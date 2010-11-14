@@ -14,6 +14,37 @@ Displays the current date. If the day is a holiday it will display that as well.
 If you notice a holiday that is missing feel free to [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me and I'll get it added. For best results include a [Wikipedia](http://en.wikipedia.org/wiki/Main_Page) page.
 
 
+# Userdays
+
+Userdays are birthdays, gatherings, events, etc that can be created by you and be displayed in the menu area along with the date and any holiday.
+
+Currently (and possibly forever) the only way to add userdays is to edit the `userdays.php` file. The below is an example userday:
+
+	array(
+		'name' => "septor's birthday",
+		'month' => 2,
+		'day' => 5,
+		'dayspan' => '',
+		'weekday' => ''
+	),
+
+In every userday there are two optional values: `dayspan` and `weekday`. Why? Well, an example of a holiday that would benefit from this method is Martin Luther King, Jr. Day since
+it's observed on the third Monday of January instead of on a set day. Before I explain any further let's make Martin Luther King, Jr. Day a userday:
+
+	array(
+		'name' => "Martin Luther King, Jr. Day",
+		'month' => 1,
+		'day' => 14,
+		'dayspan' => 22,
+		'weekday' => 'Monday'
+	),
+
+Let's break this down some. We start off knowing that the holiday is on the third Monday of the month. Since this is the case two weeks need to pass therefor `day` needs to be greater
+than the 14th. We don't want to go any further than three weeks, however, so the holiday has to be before the 22nd. `weekday` should be obvious!
+
+With all that said it should be known that if `dayspan` isn't set then `day` will be an exact day.
+
+
 # Templates
 
 The information displayed in the Date+ menu can be customized by editing the `dateplus_template.php` file inside the `e107_plugins/dateplus_menu/` folder.
@@ -24,4 +55,5 @@ Alternatively, you can save the `dateplus_template.php` file inside your theme f
 The following tags are converted inside the template file:
 
 * `%_DATE_%` → The current date: **Saturday, November 13th, 2010**
-* `%_HOLIDAY_%` → The current day's holiday. *only works inside the **$HOLIDAYTEMPLATE** variable*
+* `%_HOLIDAY_%` → The current day's holiday. *only works inside the **$HOLIDAYTEMPLATE** and **USERHOLIDAYTEMPALTE** variables*
+* `%_USERDAY_%` → The current day's user created holiday. *only works inside the **$HOLIDAYTEMPLATE**, **USERDAYTEMPLATE**, and **USERHOLIDAYTEMPALTE** variables*
