@@ -15,27 +15,29 @@ $monthalpha = date("F");
 $year = date("Y");
 
 require_once(DATEPLUS."holidays.php");
-include_once(DATEPLUS."userdays.php");
 
-foreach($userdays as $uday){
-	if(!empty($uday['weekday'])){
-		if(!empty($uday['dayspan'])){
-			if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan']){
-				$userday = $uday['name'];
+if(file_exists(DATEPLUS."userdays.php")){
+	include_once(DATEPLUS."userdays.php");
+	foreach($userdays as $uday){
+		if(!empty($uday['weekday'])){
+			if(!empty($uday['dayspan'])){
+				if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan']){
+					$userday = $uday['name'];
+				}
+			}else{
+				if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day']){
+					$userday = $uday['name'];
+				}
 			}
 		}else{
-			if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day']){
-				$userday = $uday['name'];
-			}
-		}
-	}else{
-		if(!empty($uday['dayspan'])){
-			if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan']){
-				$userday = $uday['name'];
-			}
-		}else{
-			if($month == $uday['month'] && $day == $uday['day']){
-				$userday = $uday['name'];
+			if(!empty($uday['dayspan'])){
+				if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan']){
+					$userday = $uday['name'];
+				}
+			}else{
+				if($month == $uday['month'] && $day == $uday['day']){
+					$userday = $uday['name'];
+				}
 			}
 		}
 	}

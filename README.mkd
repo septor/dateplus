@@ -18,6 +18,10 @@ If you notice a holiday that is missing feel free to [PM](http://e107.org/e107_p
 
 Userdays are birthdays, gatherings, events, etc that can be created by you and be displayed in the menu area along with the date and any holiday.
 
+In order to activate userdays you must rename the `userdays_example.php` file to `userdays.php`.
+
+## userdays.php
+
 Currently (and possibly forever) the only way to add userdays is to edit the `userdays.php` file. The below is an example userday:
 
 	array(
@@ -43,6 +47,8 @@ Let's break this down some. We start off knowing that the holiday is on the thir
 than the 14th. We don't want to go any further than three weeks, however, so the holiday has to be before the 22nd. `weekday` should be obvious!
 
 With all that said it should be known that if `dayspan` isn't set then `day` will be an exact day.
+
+If you have any questions related to the format feel free to [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me and I'll help the best I can.
 
 
 # Templates
