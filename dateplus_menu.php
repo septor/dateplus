@@ -12,7 +12,7 @@ $day = date("j");
 $month = date("F");
 $year = date("Y");
 
-// January
+
 if($month == "January"){
 	if($day == 1){
 		$holiday = "New Year's Day, Kwanzaa ends";
@@ -51,6 +51,9 @@ if($month == "January"){
 	}else if($day == 21){
 		$holiday = "J.S. Bach born (1685)";
 	}
+
+}else if(date("j F") == date("j F", easter_date($year)){
+	$holiday = "Easter";
 
 }else if($month == "April"){
 	if($day == 1){
