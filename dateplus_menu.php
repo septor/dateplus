@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('e107_INIT')) { exit; }
-if(file_exists(THEME."dateplus_template.php"){
+if(file_exists(THEME."dateplus_template.php")){
 	include_once(THEME."dateplus_template.php");
 }else{
 	include_once(e_PLUGIN."dateplus_menu/dateplus_template.php");
