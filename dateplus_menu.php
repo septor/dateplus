@@ -52,7 +52,7 @@ if($month == "January"){
 		$holiday = "J.S. Bach born (1685)";
 	}
 
-}else if(date("j F") == date("j F", easter_date($year)){
+}else if(date("j F") == date("j F", easter_date($year))){
 	$holiday = "Easter";
 
 }else if($month == "April"){
