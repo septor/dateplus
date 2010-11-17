@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('e107_INIT')) { exit; }
-require_once(e_HANDLER."date_handler.php");
+include(e_HANDLER."date_handler.php");
 define("DATEPLUS", e_PLUGIN."dateplus_menu/");
 if(file_exists(THEME."dateplus_template.php")){
 	include_once(THEME."dateplus_template.php");
@@ -18,6 +18,9 @@ $day = strftime($dayformat);
 $month = strftime("%m");
 $year = strftime("%Y");
 $datestamp = strftime("%s");
+
+$gen = new convert();
+$date = $gen->convert_date($datestamp);
 
 require_once(DATEPLUS."holidays.php");
 
@@ -58,7 +61,7 @@ if(isset($holiday) && isset($userday)){
 			"%_USERDAY_%"
 		),
 		array(
-			convert_date($datestamp),
+			$date,
 			$holiday,
 			$userday
 		), $USERHOLIDAYTEMPLATE);
@@ -71,7 +74,7 @@ if(isset($holiday) && isset($userday)){
 			"%_HOLIDAY_%"
 		),
 		array(
-			convert_date($datestamp),
+			$date,
 			$holiday
 		), $HOLIDAYTEMPLATE);
 
@@ -83,12 +86,12 @@ if(isset($holiday) && isset($userday)){
 			"%_USERDAY_%"
 		),
 		array(
-			convert_date($datestamp),
+			$date,
 			$userday
 		), $USERDAYTEMPLATE);
 
 }else{
-	$text = str_replace("%_DATE_%", convert_date($datestamp), $REGULARTEMPLATE);
+	$text = str_replace("%_DATE_%", $date, $REGULARTEMPLATE);
 }
 
 $ns->tablerender("Date+", $text, 'dateplus');
