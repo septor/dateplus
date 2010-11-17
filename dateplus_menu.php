@@ -1,6 +1,7 @@
 <?php
 
 if (!defined('e107_INIT')) { exit; }
+require_once(e_HANDLER."date_handler.php");
 define("DATEPLUS", e_PLUGIN."dateplus_menu/");
 if(file_exists(THEME."dateplus_template.php")){
 	include_once(THEME."dateplus_template.php");
@@ -9,16 +10,14 @@ if(file_exists(THEME."dateplus_template.php")){
 }
 
 $weekday = strftime("%A");
-
 $dayformat = "%e";
 if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== false) {
     $dayformat = str_replace("%e", "%#d", $dayformat);
 }
 $day = strftime($dayformat);
-
 $month = strftime("%m");
-$monthalpha = strftime("%B");
 $year = strftime("%Y");
+$datestamp = strftime("%s");
 
 require_once(DATEPLUS."holidays.php");
 
@@ -54,18 +53,12 @@ if(isset($holiday) && isset($userday)){
 
 	$text = str_replace(
 		array(
-			"%_WEEKDAY_%",
-			"%_MONTH_%",
-			"%_DAY_%",
-			"%_YEAR_%",
+			"%_DATE_%",
 			"%_HOLIDAY_%",
 			"%_USERDAY_%"
 		),
 		array(
-			$weekday,
-			$monthalpha,
-			$day,
-			$year,
+			convert_date($datestamp),
 			$holiday,
 			$userday
 		), $USERHOLIDAYTEMPLATE);
@@ -74,17 +67,11 @@ if(isset($holiday) && isset($userday)){
 	
 	$text = str_replace(
 		array(
-			"%_WEEKDAY_%",
-			"%_MONTH_%",
-			"%_DAY_%",
-			"%_YEAR_%",
+			"%_DATE_%",
 			"%_HOLIDAY_%"
 		),
 		array(
-			$weekday,
-			$monthalpha,
-			$day,
-			$year,
+			convert_date($datestamp),
 			$holiday
 		), $HOLIDAYTEMPLATE);
 
@@ -92,36 +79,16 @@ if(isset($holiday) && isset($userday)){
 	
 	$text = str_replace(
 		array(
-			"%_WEEKDAY_%",
-			"%_MONTH_%",
-			"%_DAY_%",
-			"%_YEAR_%",
+			"%_DATE_%",
 			"%_USERDAY_%"
 		),
 		array(
-			$weekday,
-			$monthalpha,
-			$day,
-			$year,
+			convert_date($datestamp),
 			$userday
 		), $USERDAYTEMPLATE);
 
 }else{
-	
-	$text = str_replace(
-		array(
-			"%_WEEKDAY_%",
-			"%_MONTH_%",
-			"%_DAY_%",
-			"%_YEAR_%"
-		),
-		array(
-			$weekday,
-			$monthalpha,
-			$day,
-			$year
-		), $REGULARTEMPLATE);
-
+	$text = str_replace("%_DATE_%", convert_date($datestamp), $REGULARTEMPLATE);
 }
 
 $ns->tablerender("Date+", $text, 'dateplus');
