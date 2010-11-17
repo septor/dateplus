@@ -60,6 +60,9 @@ Alternatively, you can save the `dateplus_template.php` file inside your theme f
 
 The following tags are converted inside the template file:
 
-* `%_DATE_%` → The current date: **Saturday, November 13th, 2010**
+* `%_WEEKDAY_%` → The current weekday: **Saturday**, November 17, 2010
+* `%_MONTH_%` → The current month: Saturday, **November** 17, 2010
+* `%_DAY_%` → The current day: Saturday, November **17**, 2010
+* `%_YEAR_%` → The current year: Saturday, November 17, **2010**
 * `%_HOLIDAY_%` → The current day's holiday. *only works inside the **$HOLIDAYTEMPLATE** and **USERHOLIDAYTEMPALTE** variables*
 * `%_USERDAY_%` → The current day's user created holiday. *only works inside the **$HOLIDAYTEMPLATE**, **USERDAYTEMPLATE**, and **USERHOLIDAYTEMPALTE** variables*
