@@ -8,11 +8,17 @@ if(file_exists(THEME."dateplus_template.php")){
 	include_once(DATEPLUS."dateplus_template.php");
 }
 
-$weekday = date("l");
-$day = date("j");
-$month = date("n");
-$monthalpha = date("F");
-$year = date("Y");
+$weekday = strftime("%A");
+
+$dayformat = "%e";
+if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== false) {
+    $dayformat = str_replace("%e", "%#d", $dayformat);
+}
+$day = strftime($dayformat);
+
+$month = strftime("%m");
+$monthalpha = strftime("%B");
+$year = strftime("%Y");
 
 require_once(DATEPLUS."holidays.php");
 
@@ -45,13 +51,77 @@ if(file_exists(DATEPLUS."userdays.php")){
 
 
 if(isset($holiday) && isset($userday)){
-	$text = str_replace(array("%_DATE_%", "%_HOLIDAY_%", "%_USERDAY_%"), array($weekday.", ".$monthalpha." ".$day.date("S").", ".$year, $holiday, $userday), $USERHOLIDAYTEMPLATE);
+
+	$text = str_replace(
+		array(
+			"%_WEEKDAY_%",
+			"%_MONTH_%",
+			"%_DAY_%",
+			"%_YEAR_%",
+			"%_HOLIDAY_%",
+			"%_USERDAY_%"
+		),
+		array(
+			$weekday,
+			$monthalpha,
+			$day,
+			$year,
+			$holiday,
+			$userday
+		), $USERHOLIDAYTEMPLATE);
+
 }else if(isset($holiday) && empty($userday)){
-	$text = str_replace(array("%_DATE_%", "%_HOLIDAY_%"), array($weekday.", ".$monthalpha." ".$day.date("S").", ".$year, $holiday), $HOLIDAYTEMPLATE);
+	
+	$text = str_replace(
+		array(
+			"%_WEEKDAY_%",
+			"%_MONTH_%",
+			"%_DAY_%",
+			"%_YEAR_%",
+			"%_HOLIDAY_%"
+		),
+		array(
+			$weekday,
+			$monthalpha,
+			$day,
+			$year,
+			$holiday
+		), $HOLIDAYTEMPLATE);
+
 }else if(isset($userday) && empty($holiday)){
-	$text = str_replace(array("%_DATE_%", "%_USERDAY_%"), array($weekday.", ".$monthalpha." ".$day.date("S").", ".$year, $userday), $USERDAYTEMPLATE);
+	
+	$text = str_replace(
+		array(
+			"%_WEEKDAY_%",
+			"%_MONTH_%",
+			"%_DAY_%",
+			"%_YEAR_%",
+			"%_USERDAY_%"
+		),
+		array(
+			$weekday,
+			$monthalpha,
+			$day,
+			$year,
+			$userday
+		), $USERDAYTEMPLATE);
+
 }else{
-	$text = str_replace("%_DATE_%", $weekday.", ".$monthalpha." ".$day.date("S").", ".$year, $REGULARTEMPLATE);
+	
+	$text = str_replace(
+		array(
+			"%_WEEKDAY_%",
+			"%_MONTH_%",
+			"%_DAY_%",
+			"%_YEAR_%"
+		),
+		array(
+			$weekday,
+			$monthalpha,
+			$day,
+			$year
+		), $REGULARTEMPLATE);
+
 }
 
 $ns->tablerender("Date+", $text, 'dateplus');
