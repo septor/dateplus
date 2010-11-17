@@ -18,6 +18,14 @@ $userdays = array(
 		'weekday' => ''
 	),
 
+	array(
+		'name' => "World of Warcraft born (2004)",
+		'month' => 11,
+		'day' => 23,
+		'dayspan' => '',
+		'weekday' => ''
+	),
+
 );
 
 ?>
