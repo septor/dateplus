@@ -7,7 +7,8 @@ $userdays = array(
 		'month' => 2,
 		'day' => 5,
 		'dayspan' => '',
-		'weekday' => ''
+		'weekday' => '',
+		'time' => '23:14'
 	),
 
 	array(
@@ -15,7 +16,8 @@ $userdays = array(
 		'month' => 11,
 		'day' => 13,
 		'dayspan' => '',
-		'weekday' => ''
+		'weekday' => '',
+		'time' => ''
 	),
 
 	array(
@@ -23,7 +25,8 @@ $userdays = array(
 		'month' => 11,
 		'day' => 23,
 		'dayspan' => '',
-		'weekday' => ''
+		'weekday' => '',
+		'time' => ''
 	),
 
 );

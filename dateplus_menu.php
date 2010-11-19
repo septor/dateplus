@@ -17,6 +17,7 @@ if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== fa
 $day = strftime($dayformat);
 $month = strftime("%m");
 $year = strftime("%Y");
+$time = strftime("%H:%M");
 $datestamp = strftime("%s");
 
 $gen = new convert();
@@ -29,22 +30,46 @@ if(file_exists(DATEPLUS."userdays.php")){
 	foreach($userdays as $uday){
 		if(!empty($uday['weekday'])){
 			if(!empty($uday['dayspan'])){
-				if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan']){
-					$userday = $uday['name'];
+				if(!empty($uday['time'])){
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time == $uday['time']){
+						$userday = $uday['name'];
+					}
+				}else{
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan']){
+						$userday = $uday['name'];
+					}
 				}
 			}else{
-				if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day']){
-					$userday = $uday['name'];
+				if(!empty($uday['time'])){
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day'] && $time == $uday['time']){
+						$userday = $uday['name'];
+					}
+				}else{
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day']){
+						$userday = $uday['name'];
+					}
 				}
 			}
 		}else{
 			if(!empty($uday['dayspan'])){
-				if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan']){
-					$userday = $uday['name'];
+				if(!empty($uday['time'])){
+					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time == $uday['time']){
+						$userday = $uday['name'];
+					}
+				}else{
+					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan']){
+						$userday = $uday['name'];
+					}
 				}
 			}else{
-				if($month == $uday['month'] && $day == $uday['day']){
-					$userday = $uday['name'];
+				if(!empty($uday['time'])){
+					if($month == $uday['month'] && $day == $uday['day'] && $time == $uday['time']){
+						$userday = $uday['name'];
+					}
+				}else{
+					if($month == $uday['month'] && $day == $uday['day']){
+						$userday = $uday['name'];
+					}
 				}
 			}
 		}

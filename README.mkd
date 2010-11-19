@@ -29,24 +29,28 @@ Currently (and possibly forever) the only way to add userdays is to edit the `us
 		'month' => 2,
 		'day' => 5,
 		'dayspan' => '',
-		'weekday' => ''
+		'weekday' => '',
+		'time' => '23:14'
 	),
 
-In every userday there are two optional values: `dayspan` and `weekday`. Why? Well, an example of a holiday that would benefit from this method is Martin Luther King, Jr. Day since
-it's observed on the third Monday of January instead of on a set day. Before I explain any further let's make Martin Luther King, Jr. Day a userday:
+In every userday there are three optional values: `dayspan, `weekday`, and `time`. Why? Well, an example of a holiday that would benefit from the `dayspan` and `weekday` values is Martin
+Luther King, Jr. Day since it's observed on the third Monday of January instead of on a set day. Before I explain any further let's make Martin Luther King, Jr. Day a userday:
 
 	array(
 		'name' => "Martin Luther King, Jr. Day",
 		'month' => 1,
 		'day' => 14,
 		'dayspan' => 22,
-		'weekday' => 'Monday'
+		'weekday' => 'Monday',
+		'time' => ''
 	),
 
 Let's break this down some. We start off knowing that the holiday is on the third Monday of the month. Since this is the case two weeks need to pass therefor `day` needs to be greater
 than the 14th. We don't want to go any further than three weeks, however, so the holiday has to be before the 22nd. `weekday` should be obvious!
 
 With all that said it should be known that if `dayspan` isn't set then `day` will be an exact day.
+
+The final optional value, `time`, never has to be set unless you want to mark the exact time in a day. Be sure to use a 24-hour format for this to work correctly.
 
 If you have any questions related to the format feel free to [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me and I'll help the best I can.
 
