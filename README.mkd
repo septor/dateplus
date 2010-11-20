@@ -22,7 +22,7 @@ In order to activate userdays you must rename the `userdays_example.php` file to
 
 ## userdays.php
 
-Currently the most optimal way to add your custom events it by utilizing the `userday.php` file. Below is example userday:
+Currently the most optimal way to add your custom events it by utilizing the `userday.php` file. Below is an example userday:
 
 	array(
 		'name' => "septor's birthday",
@@ -53,7 +53,7 @@ Let's break this down some. We start off knowing that the holiday is on the thir
 than 14. We don't want to go any further than three weeks, however, so the `dayspan` must be set to 22. Since the holiday falls on a Monday the `weekday` value needs to be set to Monday.
 
 While the `timestart` and `timeend` values are optional, it is mandatory that they be used together. You can't use one without using the other. The values for each must be a time
-in the 24-huur format **without** the semi-colon. Example: 2314 (11:14PM), 0706 (7:06AM).
+in the 24-hour format **without** the semi-colon. Example: 2314 (11:14PM), 0706 (7:06AM).
 
 If you have any questions related to the format feel free to [PM](http://e107.org/e107_plugins/pm/pm.php?send.37) me and I'll help the best I can.
 
