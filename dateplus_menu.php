@@ -17,7 +17,7 @@ if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== fa
 $day = strftime($dayformat);
 $month = strftime("%m");
 $year = strftime("%Y");
-$time = strftime("%H:%M");
+$time = strftime("%H%M");
 $datestamp = strftime("%s");
 
 $gen = new convert();
@@ -30,8 +30,10 @@ if(file_exists(DATEPLUS."userdays.php")){
 	foreach($userdays as $uday){
 		if(!empty($uday['weekday'])){
 			if(!empty($uday['dayspan'])){
-				if(!empty($uday['time'])){
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time == $uday['time']){
+				if(!empty($uday['timestart']) && !empty($uday['timeend']){
+					$timestart = str_replace(":", "", $uday['timestart']);
+					$timeend = str_replace(":", "", $uday['timeend']);
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time >= $timestart && $time <= $timeend){
 						$userday = $uday['name'];
 					}
 				}else{
@@ -40,8 +42,10 @@ if(file_exists(DATEPLUS."userdays.php")){
 					}
 				}
 			}else{
-				if(!empty($uday['time'])){
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day'] && $time == $uday['time']){
+				if(!empty($uday['timestart']) && !empty($uday['timeend']){
+					$timestart = str_replace(":", "", $uday['timestart']);
+					$timeend = str_replace(":", "", $uday['timeend']);
+					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day'] && $time >= $timestart && $time <= $timeend){
 						$userday = $uday['name'];
 					}
 				}else{
@@ -52,8 +56,10 @@ if(file_exists(DATEPLUS."userdays.php")){
 			}
 		}else{
 			if(!empty($uday['dayspan'])){
-				if(!empty($uday['time'])){
-					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time == $uday['time']){
+				if(!empty($uday['timestart']) && !empty($uday['timeend']){
+					$timestart = str_replace(":", "", $uday['timestart']);
+					$timeend = str_replace(":", "", $uday['timeend']);
+					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time >= $timestart && $time <= $timeend){
 						$userday = $uday['name'];
 					}
 				}else{
@@ -62,8 +68,10 @@ if(file_exists(DATEPLUS."userdays.php")){
 					}
 				}
 			}else{
-				if(!empty($uday['time'])){
-					if($month == $uday['month'] && $day == $uday['day'] && $time == $uday['time']){
+				if(!empty($uday['timestart']) && !empty($uday['timeend']){
+					$timestart = str_replace(":", "", $uday['timestart']);
+					$timeend = str_replace(":", "", $uday['timeend']);
+					if($month == $uday['month'] && $day == $uday['day'] && $time >= $timestart && $time <= $timeend){
 						$userday = $uday['name'];
 					}
 				}else{

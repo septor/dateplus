@@ -8,7 +8,8 @@ $userdays = array(
 		'day' => 5,
 		'dayspan' => '',
 		'weekday' => '',
-		'time' => '23:14'
+		'timestart' => '',
+		'timeend' => ''
 	),
 
 	array(
@@ -17,7 +18,8 @@ $userdays = array(
 		'day' => 13,
 		'dayspan' => '',
 		'weekday' => '',
-		'time' => ''
+		'timestart' => '',
+		'timeend' => ''
 	),
 
 	array(
@@ -26,7 +28,8 @@ $userdays = array(
 		'day' => 23,
 		'dayspan' => '',
 		'weekday' => '',
-		'time' => ''
+		'timestart' => '',
+		'timeend' => ''
 	),
 
 );
