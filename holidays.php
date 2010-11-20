@@ -171,4 +171,82 @@ if($month == 1){
 	}
 }
 
+// Hanukkah; 2010 - 2020
+if(isset($holiday)){
+	$holiday = $holiday.", ";
+}
+if($month == 1){
+	if($day == 2 && $year == 2017){
+		$holiday .= "Hanukkah ends";
+	}
+}else if($month == 11){
+	if($day == 28 && $year == 2013){
+		$holiday .= "Hanukkah begins";
+	}
+}else if($month == 12){
+	if($year == 2010){
+		if($day == 2){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 10){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2011){
+		if($day == 21){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 29){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2012){
+		if($day == 9){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 17){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2013){
+		if($day == 6){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2014){
+		if($day == 17){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 25){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2015){
+		if($day == 7){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 15){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2016){
+		if($day == 25){
+			$holiday .= "Hanukkah begins";
+		}
+	}else if($year == 2017){
+		if($day == 13){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 21){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2018){
+		if($day == 3){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 11){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2019){
+		if($day == 23){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 31){
+			$holiday .= "Hanukkah ends";
+		}
+	}else if($year == 2020){
+		if($day == 11){
+			$holiday .= "Hanukkah begins";
+		}else if($day == 19){
+			$holiday .= "Hanukkah ends";
+		}
+	}
+}
+
 ?>
