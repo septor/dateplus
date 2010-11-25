@@ -1,7 +1,6 @@
 <?php
 
 if (!defined('e107_INIT')) { exit; }
-include(e_HANDLER."date_handler.php");
 define("DATEPLUS", e_PLUGIN."dateplus_menu/");
 if(file_exists(THEME."dateplus_template.php")){
 	include_once(THEME."dateplus_template.php");
