@@ -33,6 +33,8 @@ if($month == 1){
 }else if($month == 3){
 	if($day == 3){
 		$holiday = "Girl's Day (Japan)";
+	}else if($day == 14){
+		$holiday = "Albert Einstein born (1879), <a title='".pi()."'>Pi</a> Day";
 	}else if($day == 17){
 		$holiday = "St. Patrick's Day";
 	}else if($day == 21){
