@@ -83,6 +83,13 @@ if(file_exists(DATEPLUS."userdays.php")){
 	}
 }
 
+if(isset($hanukkah){
+	if(isset($holiday){
+		$holiday = $holiday.", ".$hanukkah;
+	}else{
+		$holiday = $hanukkah;
+	}
+}
 
 if(isset($holiday) && isset($userday)){
 
