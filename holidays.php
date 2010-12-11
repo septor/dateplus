@@ -183,13 +183,7 @@ if($month == 1){
 		$hanukkah = "Hanukkah begins";
 	}
 }else if($month == 12){
-	if($year == 2010){
-		if($day == 2){
-			$hanukkah = "Hanukkah begins";
-		}else if($day == 10){
-			$hanukkah = "Hanukkah ends";
-		}
-	}else if($year == 2011){
+	if($year == 2011){
 		if($day == 21){
 			$hanukkah = "Hanukkah begins";
 		}else if($day == 29){
