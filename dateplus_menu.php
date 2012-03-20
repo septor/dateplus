@@ -9,16 +9,19 @@ if(file_exists(THEME."dateplus_template.php")){
 	include_once(DATEPLUS."dateplus_template.php");
 }
 
+global $userday, $holiday;
+
 $weekday = strftime("%A");
 $dayformat = "%e";
-if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== false) {
-    $dayformat = str_replace("%e", "%#d", $dayformat);
+if(strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== false){
+    $dayformat = str_replace("%e", "%d", $dayformat);
 }
+
 $day = strftime($dayformat);
 $month = strftime("%m");
 $year = strftime("%Y");
 $time = strftime("%H%M");
-$datestamp = strftime("%s");
+$datestamp = time();
 
 $gen = new convert();
 $date = $gen->convert_date($datestamp);

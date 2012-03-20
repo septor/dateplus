@@ -5,6 +5,8 @@ if($month == 1){
 		$holiday = "New Year's Day, Kwanzaa ends";
 	}else if($day == 15){
 		$holiday = "Adult's Day (Japan)";
+	}else if($day == 23){
+		$holdiay = "Chinese New Year";
 	}else if($day == 27){
 		$holiday = "Wolfgang Amadeus Mozart born (1756)";
 	}else if($weekday == "Monday" && $day > 14 && $day < 22){
@@ -173,7 +175,7 @@ if($month == 1){
 	}
 }
 
-// Hanukkah; 2010 - 2020
+// Hanukkah; 2011 - 2020
 if($month == 1){
 	if($day == 2 && $year == 2017){
 		$hanukkah = "Hanukkah ends";

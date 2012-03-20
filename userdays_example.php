@@ -3,7 +3,7 @@
 $userdays = array(
 
 	array(
-		'name' => "septor's birthday",
+		'name' => "septor born (1982)",
 		'month' => 2,
 		'day' => 5,
 		'dayspan' => '',
@@ -21,11 +21,21 @@ $userdays = array(
 		'timestart' => '',
 		'timeend' => ''
 	),
-
+	
 	array(
-		'name' => "World of Warcraft born (2004)",
-		'month' => 11,
-		'day' => 23,
+		'name' => "e107 born (2002)",
+		'month' => 4,
+		'day' => 27,
+		'dayspan' => '',
+		'weekday' => '',
+		'timestart' => '',
+		'timeend' => ''
+	),
+	
+	array(
+		'name' => "e107 re-branded (2011)",
+		'month' => 12,
+		'day' => 29,
 		'dayspan' => '',
 		'weekday' => '',
 		'timestart' => '',

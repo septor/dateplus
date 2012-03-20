@@ -1,3 +1,10 @@
+
+# IMPORTANT!!!
+
+Before this plugin or menu item will work correctly with e107 you will need to rename the directory you're presented with to `dateplus_menu`. In most cases this can be done
+inside the archieve program you use to decompress the tar/zipball.
+
+
 # Date+ Menu
 
 Displays the current date. If the day is a holiday it will display that as well.
@@ -63,14 +70,3 @@ The following tags are converted inside the template file:
 * `%_DATE_%` → The current date: **Sunday, February 13, 2011**
 * `%_HOLIDAY_%` → The current day's holiday. *only works inside the **$HOLIDAYTEMPLATE** and **USERHOLIDAYTEMPALTE** variables*
 * `%_USERDAY_%` → The current day's user created holiday. *only works inside the **$HOLIDAYTEMPLATE**, **USERDAYTEMPLATE**, and **USERHOLIDAYTEMPALTE** variables*
-
-
-# Shortcodes
-
-The following shortcodes can be used throughout your e107 install:
-
-* `{DATEPLUSDATE}` → The current date: **Sunday, February 13, 2011**
-* `{DATEPLUSHOLIDAY}` → The current day's holiday. Displays "No holidays today." if there is no event for that day. If you don't want the "No holidays today." text
-displayed open `e107_plugins/dateplus_menu/dateplusholiday.sc` and change line 3 to read: `return $holiday;`.
-* `{DATEPLUSUSERDAY}` → The current day's user created holiday. Displays "No user defined events today." if there is no event for that day. If you don't want the
-"No user defined events today." text displayed open `e107_plugins/dateplus_menu/dateplususerday.sc` and change line 60 to read: `return $userday;`.
