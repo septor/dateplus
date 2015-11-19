@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="Date+" lan="" version="1.0" date="2015-11-17" compatibility="2.0" installRequired="true" >
+	<author name="Patrick Weaver" url="http://trickmod.com" />
+	<summary lan="">Advanced Date Display Menu</summary>
+	<description lan="">Displays holidays and user created events inside a menu item.</description>
+	<keywords>
+		<word>date</word>
+		<word>holidays</word>
+	</keywords>
+	<category>content</category>
+	<copyright>2015</copyright>
+	<adminLinks>
+		<link url="admin_config.php" description="" icon="" iconSmall="" primary="true" >LAN_CONFIGURE</link>
+	</adminLinks>
+	<pluginPrefs>
+		<pref name='enableUserdays'>true</pref>
+	</pluginPrefs>
+</e107Plugin>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dateplus>
+	<month id="1">
+		<holiday name="New Year's Day" day="1" />
+		<holiday name="Kwanzaa ends" day="1" />
+		<holiday name="Adult's Day (Japan)" day="15" />
+		<holiday name="Chinese New Year" day="23" />
+		<holiday name="Wolfgang Amadeus Mozart born (1756)" day="27" />
+		<holiday name="Martin Luther King's Birthday" day="third Monday"/>
+	</month>
+	<month id="2">
+		<holiday name="Groundhog Day" day="2" />
+		<holiday name="Jules Verne born (1828)" day="8" />
+		<holiday name="National Foundation Day (Japan)" day="11" />
+		<holiday name="Lincoln's Birthday" day="12" />
+		<holiday name="St. Valentine's Day" day="14" />
+		<holiday name="Galileo Galilei born (1564)" day="15" />
+		<holiday name="Washington's Birthday" day="22" />
+		<holiday name="Leap Day" day="29" />
+	</month>
+	<month id="3">
+		<holiday name="Girl's Day (Japan)" day="3" />
+		<holiday name="Albert Einstein born (1879)" day="14" />
+		<holiday name="Pi Day" day="14" />
+		<holiday name="St. Patrick's Day" day="17" />
+		<holiday name="J.S. Bach born (1685)" day="21" />
+	</month>
+	<month id="4">
+		<holiday name="April Fools' Day" day="1" />
+		<holiday name="Buddha born" day="8" />
+		<holiday name="Siblings Day" day="10" />
+		<holiday name="Leonardo da Vinci born (1452)" day="15" />
+		<holiday name="Earth Day" day="22" />
+		<holiday name="Emperor's Birthday (Japan)" day="29" />
+	</month>
+	<month id="5">
+		<holiday name="May Day" day="1" />
+		<holiday name="Boy's Day (Japan)" day="1" />
+		<holiday name="Constitution Day (Japan)" day="2" />
+		<holiday name="Cinco de Mayo (Mexico)" day="5" />
+		<holiday name="Children's Day" day="5" />
+		<holiday name="Independence Day (Paraguay)" day="14" />
+		<holiday name="Mother's Day" day="second Sunday" />
+		<holiday name="Memorial Day" afterDay="24" weekday="2" />
+	</month>
+	<month id="6">
+		<holiday name="Constitution Day (Denmark)" day="5" />
+		<holiday name="D-Day (USA)" day="6" />
+		<holiday name="Kamehameha (Hawaii)" day="11" />
+		<holiday name="Flag Day (USA)" day="14" />
+		<holiday name="Summer Solstice" day="21" />
+		<holiday name="St. Jean Baptiste Day (Canada)" day="24" />
+		<holiday name="Indepenence Day (Zaire)" day="30" />
+		<holiday name="Father's Day" day="third Sunday" />
+	</month>
+	<month id="7">
+		<holiday name="Independence Day (Canada)" day="1" />
+		<holiday name="Independence Day (USA)" day="4" />
+		<holiday name="Bastille Day (France)" day="14" />
+	</month>
+	<month id="8">
+		<holiday name="Confederation Day (Switzerland)" day="1" />
+		<holiday name="Independence Day (Ecuador)" day="10" />
+		<holiday name="Independence Day (India)" day="15" />
+	</month>
+	<month id="9">
+		<holiday name="Independence Day (Brazil)" day="7" />
+		<holiday name="Patriot Day (USA)" day="11" />
+		<holiday name="Respect for the Aged Day (Japan)" day="15" />
+		<holiday name="Independence Day (Mexico)" day="16" />
+		<holiday name="Labor Day (USA)" day="first Monday" />
+	</month>
+	<month id="10">
+		<holiday name="German Reunification (1990)" day="1" />
+		<holiday name="Health-Sport's Day (Japan)" day="10" />
+		<holiday name="Columbus Day (USA)" day="second Monday" />
+		<holiday name="United Nations Day" day="24" />
+		<holiday name="Halloween" day="31" />
+	</month>
+	<month id="11">
+		<holiday name="All Saint's Day" day="1" />
+		<holiday name="All Soul's Day" day="2" />
+		<holiday name="Culture Day (Japan)" day="3" />
+		<holiday name="Veteran's Day (USA)" day="11" />
+		<holiday name="Remembrance Day (Canada)" day="11" />
+		<holiday name="Fake Holiday" day="19" />
+		<holiday name="Revolution Day (Mexico)" day="20" />
+		<holiday name="Labor Thanksgiving Day (Japan)" day="23" />
+		<holiday name="Thanksgiving (USA)" day="last Thursday" />
+	</month>
+	<month id="12">
+		<holiday name="Human Right's Day" day="10" />
+		<holiday name="Winter Solstice" day="21" />
+		<holiday name="Christmas Eve" day="24" />
+		<holiday name="Christmas" day="25" />
+		<holiday name="Boxing Day" day="26" />
+		<holiday name="Kwanzaa begins" day="26" />
+		<holiday name="New Year's Eve" day="31" />
+	</month>
+</dateplus>

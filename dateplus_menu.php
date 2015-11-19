@@ -1,141 +1,65 @@
 <?php
+/*
+ * Date+ - An advanced date display menu for e107
+ *
+ * Copyright (C) 2010-2015 Patrick Weaver (http://trickmod.com/)
+ * For additional information refer to the README.mkd file.
+ *
+ */
+if(!defined('e107_INIT')){ exit; }
+require_once(e_PLUGIN.'dateplus/_class.php');
 
-if (!defined('e107_INIT')) { exit; }
-include_once(e_HANDLER."date_handler.php");
-define("DATEPLUS", e_PLUGIN."dateplus_menu/");
-if(file_exists(THEME."dateplus_template.php")){
-	include_once(THEME."dateplus_template.php");
-}else{
-	include_once(DATEPLUS."dateplus_template.php");
-}
+$tp = e107::getParser();
+$sc = e107::getScBatch('dateplus', true);
+$template = e107::getTemplate('dateplus');
 
-global $userday, $holiday;
+$curMonth = date('n');
+$curDay = date('j');
 
-$weekday = strftime("%A");
-$dayformat = "%e";
-if(strtoupper(substr(PHP_OS, 0, 3)) == "WIN" && strpos($dayformat, "%e") !== false){
-    $dayformat = str_replace("%e", "%d", $dayformat);
-}
+$monthName = cal_info(0);
+$holidays = simplexml_load_file(e_PLUGIN.'dateplus/holidays.xml');
 
-$day = strftime($dayformat);
-$month = strftime("%m");
-$year = strftime("%Y");
-$time = strftime("%H%M");
-$datestamp = time();
+$text = "";
 
-$gen = new convert();
-$date = $gen->convert_date($datestamp);
-
-require_once(DATEPLUS."holidays.php");
-
-if(file_exists(DATEPLUS."userdays.php")){
-	include_once(DATEPLUS."userdays.php");
-	foreach($userdays as $uday){
-		if(!empty($uday['weekday'])){
-			if(!empty($uday['dayspan'])){
-				if(!empty($uday['timestart']) && !empty($uday['timeend'])){
-					$timestart = str_replace(":", "", $uday['timestart']);
-					$timeend = str_replace(":", "", $uday['timeend']);
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time >= $timestart && $time <= $timeend){
-						$userday = $uday['name'];
-					}
-				}else{
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day > $uday['day'] && $day < $uday['dayspan']){
-						$userday = $uday['name'];
-					}
-				}
-			}else{
-				if(!empty($uday['timestart']) && !empty($uday['timeend'])){
-					$timestart = str_replace(":", "", $uday['timestart']);
-					$timeend = str_replace(":", "", $uday['timeend']);
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day'] && $time >= $timestart && $time <= $timeend){
-						$userday = $uday['name'];
-					}
-				}else{
-					if($month == $uday['month'] && $weekday == $uday['weekday'] && $day == $uday['day']){
-						$userday = $uday['name'];
-					}
-				}
+foreach($holidays->month as $month)
+{
+	if($month['id'] == $curMonth)
+	{
+		foreach($month->holiday as $holiday)
+		{
+			$day = (is_numeric((string)$holiday['day']) ? $holiday['day'] : date('j', strtotime($holiday['day'].' of this month')));
+			if($day == $curDay)
+			{
+				$holiray[] = array($holiday['name'], $month['id'], $day);
 			}
-		}else{
-			if(!empty($uday['dayspan'])){
-				if(!empty($uday['timestart']) && !empty($uday['timeend'])){
-					$timestart = str_replace(":", "", $uday['timestart']);
-					$timeend = str_replace(":", "", $uday['timeend']);
-					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan'] && $time >= $timestart && $time <= $timeend){
-						$userday = $uday['name'];
-					}
-				}else{
-					if($month == $uday['month'] && $day > $uday['day'] && $day < $uday['dayspan']){
-						$userday = $uday['name'];
-					}
-				}
-			}else{
-				if(!empty($uday['timestart']) && !empty($uday['timeend'])){
-					$timestart = str_replace(":", "", $uday['timestart']);
-					$timeend = str_replace(":", "", $uday['timeend']);
-					if($month == $uday['month'] && $day == $uday['day'] && $time >= $timestart && $time <= $timeend){
-						$userday = $uday['name'];
-					}
-				}else{
-					if($month == $uday['month'] && $day == $uday['day']){
-						$userday = $uday['name'];
-					}
-				}
+			if($month['id'].'/'.$curDay == date('n/j', easter_date()))
+			{
+				$holiray[] = array('Easter', $month['id'], $curDay);
 			}
 		}
 	}
 }
 
-if(isset($hanukkah)){
-	if(isset($holiday)){
-		$holiday = $holiday.", ".$hanukkah;
-	}else{
-		$holiday = $hanukkah;
-	}
+$all_holidays = '';
+foreach($holiray as $entry)
+{
+	$sc->setVars(array(
+		'name' => $entry[0],
+		'month' => $entry[1],
+		'day' => $entry[2],
+	));
+
+	$all_holidays .= $tp->parseTemplate($template['holiday'], false, $sc);
 }
 
-if(isset($holiday) && isset($userday)){
+$sc->setVars(array(
+	'all_holidays' => $all_holidays,
+));
 
-	$text = str_replace(
-		array(
-			"%_DATE_%",
-			"%_HOLIDAY_%",
-			"%_USERDAY_%"
-		),
-		array(
-			$date,
-			$holiday,
-			$userday
-		), $USERHOLIDAYTEMPLATE);
+$text = $tp->parseTemplate($template['menu'], false, $sc);
 
-}else if(isset($holiday) && empty($userday)){
-	
-	$text = str_replace(
-		array(
-			"%_DATE_%",
-			"%_HOLIDAY_%"
-		),
-		array(
-			$date,
-			$holiday
-		), $HOLIDAYTEMPLATE);
+if(!$text)
+	$text = 'No holidays today!';
 
-}else if(isset($userday) && empty($holiday)){
-	
-	$text = str_replace(
-		array(
-			"%_DATE_%",
-			"%_USERDAY_%"
-		),
-		array(
-			$date,
-			$userday
-		), $USERDAYTEMPLATE);
-
-}else{
-	$text = str_replace("%_DATE_%", $date, $REGULARTEMPLATE);
-}
-
-$ns->tablerender("Date+", $text, 'dateplus');
+e107::getRender()->tablerender('title', $text);
 ?>
