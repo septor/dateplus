@@ -16,6 +16,7 @@ $template = e107::getTemplate('dateplus');
 $curMonth = date('n');
 $curDay = date('j');
 $holidays = simplexml_load_file(e_PLUGIN.'dateplus/holidays.xml');
+$hanukkah = simplexml_load_file(e_PLUGIN.'dateplus/hanukkah.xml');
 $text = "";
 
 foreach($holidays->month as $month)
@@ -48,6 +49,27 @@ if($pref['enableUserdays'] == true)
 		if($udMonth.'/'.$udDay == $curMonth.'/'.$curDay)
 		{
 			$holiray[] = array($row['event_name'], $udMonth, $udDay);
+		}
+	}
+}
+
+foreach($hanukkah->start as $hs)
+{
+	foreach($hs->on as $on)
+	{
+		if($on['day'].'/'.$on['month'].'/'.$on['year'] == date('j/n/Y'))
+		{
+			$holiray[] = array('Hanukkah starts', $on['month'], $on['day']);
+		}
+	}
+}
+foreach($hanukkah->end as $he)
+{
+	foreach($he->on as $off)
+	{
+		if($off['day'].'/'.$off['month'].'/'.$off['year'] == date('j/n/Y'))
+		{
+			$holiray[] = array('Hanukkah ends', $off['month'], $off['day']);
 		}
 	}
 }

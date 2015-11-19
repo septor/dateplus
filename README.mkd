@@ -8,8 +8,14 @@ If you notice a holiday that is missing feel free to open an issue with the holi
 
 If an existing holiday falls on a different day for your country (I'm from the United States, I realize we're wrong 99% of the time) let me know that too! I'll add the correct date for your country!
 
-## WHERE ARE ~~USERDAYS??~~ HANUKKAH???
+## Userdays
 
-Chill out, buddy! ~~They're~~It's coming!
+Userdays are events, birthdays, trips, etc that maybe only you (or your users) celebrate. You can add your own userday by clicking `Create Userdays` in the admin area, setting the name of the event, and picking a date.
 
-The majority of this plugins code was from 5 years ago and I've learned a lot since then so it's all getting rewritten!
+## Hanukkah and Easter
+
+... both have amazingly awesome days that they fall on (or start and end). There is special code written just to support them, but I'm looking at better ways to manage them. None of this really affects the end user, but it's important information that should be passed on. If they don't display correctly for you let me know!
+
+## Translations
+
+Multilingual support is coming soon. Stick around.
