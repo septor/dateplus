@@ -8,7 +8,7 @@
  */
 if(!defined('e107_INIT')){ exit; }
 require_once(e_PLUGIN.'dateplus/_class.php');
-
+$pref = e107::pref('dateplus');
 $tp = e107::getParser();
 $sc = e107::getScBatch('dateplus', true);
 $template = e107::getTemplate('dateplus');
@@ -37,6 +37,21 @@ foreach($holidays->month as $month)
 	}
 }
 
+if($pref['enableUserdays'] == true)
+{
+	$userdays = e107::getDb()->retrieve('userdays', '*', '', true);
+	foreach($userdays as $row)
+	{
+		$udMonth = date('n', $row['event_date']);
+		$udDay = date('j', $row['event_date']);
+
+		if($udMonth.'/'.$udDay == $curMonth.'/'.$curDay)
+		{
+			$holiray[] = array($row['event_name'], $udMonth, $udDay);
+		}
+	}
+}
+
 $all_holidays = '';
 foreach($holiray as $entry)
 {
@@ -49,18 +64,11 @@ foreach($holiray as $entry)
 	$all_holidays .= $tp->parseTemplate($template['holiday'], false, $sc);
 }
 
-if(!empty($all_holidays)
-{
-	$sc->setVars(array(
-		'all_holidays' => $all_holidays,
-	));
+$sc->setVars(array(
+	'all_holidays' => $all_holidays,
+));
 
-	$text = $tp->parseTemplate($template['menu'], false, $sc);
-}
-else
-{
-	$text = 'No holidays today!';
-}
+$text = $tp->parseTemplate($template['menu'], false, $sc);
 
 e107::getRender()->tablerender('Date+', $text);
 ?>

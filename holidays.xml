@@ -83,7 +83,6 @@
 		<holiday name="Culture Day (Japan)" day="3" />
 		<holiday name="Veteran's Day (USA)" day="11" />
 		<holiday name="Remembrance Day (Canada)" day="11" />
-		<holiday name="Fake Holiday" day="19" />
 		<holiday name="Revolution Day (Mexico)" day="20" />
 		<holiday name="Labor Thanksgiving Day (Japan)" day="23" />
 		<holiday name="Thanksgiving (USA)" day="last Thursday" />

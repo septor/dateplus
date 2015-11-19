@@ -6,10 +6,23 @@
  * For additional information refer to the README.mkd file.
  *
  */
-function monthToText($month)
+function formatMonth($month, $format='')
 {
-	$dateObj   = DateTime::createFromFormat('!m', $month);
-	return $dateObj->format('F');
+	if($format == 'short')
+	{
+		$datemat = 'M';
+	}
+	else if($format == 'long')
+	{
+		$datemat = 'F';
+	}
+	else
+	{
+		$datemat = 'm';
+	}
+
+	$dateObj = DateTime::createFromFormat('!m', $month);
+	return $dateObj->format($datemat);
 }
 
 ?>

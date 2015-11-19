@@ -78,8 +78,22 @@ class dateplus_shortcodes extends e_shortcode
 		return $this->var['name'];
 	}
 
-	function sc_dateplus_holiday_month($parm='')
+	function sc_dateplus_holiday_month($parm)
 	{
+		/*if(isset($parm['long']))
+		{
+			$format = 'long';
+		}
+		else if(isset($parm['short']))
+		{
+			$format = 'short';
+		}
+		else
+		{
+			$format = '';
+		}*/
+
+		//return formatMonth($this->var['month'], $format);
 		return $this->var['month'];
 	}
 

@@ -25,7 +25,9 @@ class dateplus_adminArea extends e_admin_dispatcher
 	);
 
 	protected $adminMenu = array(
-		'main/prefs' 		=> array('caption'=> LAN_PREFS, 'perm' => 'P'),
+		'main/list'			=> array('caption' => 'Manage Userdays', 'perm' => 'P'),
+		'main/create'		=> array('caption' => 'Create Userdays', 'perm' => 'P'),
+		'main/prefs' 		=> array('caption' => LAN_PREFS, 'perm' => 'P'),
 		// 'main/custom'		=> array('caption'=> 'Custom Page', 'perm' => 'P')
 	);
 
@@ -41,9 +43,9 @@ class dateplus_ui extends e_admin_ui
 		protected $pluginTitle		= 'Date+';
 		protected $pluginName		= 'dateplus';
 	//	protected $eventName		= 'dateplus-'; // remove comment to enable event triggers in admin.
-		protected $table			= '';
-		protected $pid				= '';
-		protected $perPage			= 10;
+		protected $table			= 'userdays';
+		protected $pid				= 'id';
+		protected $perPage			= 20;
 		protected $batchDelete		= true;
 	//	protected $batchCopy		= true;
 	//	protected $sortField		= 'somefield_order';
@@ -52,13 +54,74 @@ class dateplus_ui extends e_admin_ui
 
 	//	protected $listQry      	= "SELECT * FROM `#tableName` WHERE field != '' "; // Example Custom Query. LEFT JOINS allowed. Should be without any Order or Limit.
 
-		protected $listOrder		= ' DESC';
-		protected $fields 		= NULL;
-		protected $fieldpref = array();
+		protected $listOrder		= 'id DESC';
+		protected $fields = array(
+			'checkboxes' =>   array (
+				'title' => '',
+				'type' => null,
+				'data' => null,
+				'width' => '5%',
+				'thclass' => 'center',
+				'forced' => '1',
+				'class' => 'center',
+				'toggle' => 'e-multiselect',
+			),
+			'id' =>   array (
+				'title' => LAN_ID,
+				'data' => 'int',
+				'width' => '5%',
+				'help' => '',
+				'readParms' => '',
+				'writeParms' => '',
+				'class' => 'left',
+				'thclass' => 'left',
+			),
+			'event_name' => array(
+				'title' => 'Event Name',
+				'type' => 'text',
+				'data' => 'str',
+				'width' => 'auto',
+				'inline' => true,
+				'help' => 'The name of the event.',
+				'readParms' => '',
+				'writeParms' => '',
+				'class' => 'left',
+				'thclass' => 'left',
+			),
+			'event_date' => array(
+				'title' => 'Event Date',
+				'type' => 'datestamp',
+				'data' => 'str',
+				'width' => 'auto',
+				'inline' => true,
+				'help' => '',
+				'readParms' => '',
+				'writeParms' => '',
+				'class' => 'left',
+				'thclass' => 'left',
+			),
+			'options' =>   array (
+				'title' => LAN_OPTIONS,
+				'type' => null,
+				'data' => null,
+				'width' => '10%',
+				'thclass' => 'center last',
+				'class' => 'center last',
+				'forced' => '1',
+			),
+		);
+
+		protected $fieldpref = array('event_name', 'event_date');
 
 	//	protected $preftabs        = array('General', 'Other' );
 		protected $prefs = array(
-			'enableUserdays'		=> array('title'=> 'EnableUserdays', 'tab'=>0, 'type'=>'boolean', 'data' => 'str', 'help'=>'Help Text goes here'),
+			'enableUserdays' => array(
+				'title' => 'Enable Userdays?',
+				'tab' => 0,
+				'type' => 'boolean',
+				'data' => 'str',
+				'help' => 'Do you want your custom events added to the holidays output?'
+			),
 		);
 
 		public function init()
