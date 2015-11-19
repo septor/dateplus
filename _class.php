@@ -25,4 +25,11 @@ function formatMonth($month, $format='')
 	return $dateObj->format($datemat);
 }
 
+function hanukkahStart($year = null)
+{
+	$reference = ($year == '2021' || $year == '2032' ? '11/1/' : '12/1/').($year !== null ? $year : date('Y'));
+	list($month, $day, $year) = explode("/", jdtojewish(unixtojd(strtotime($reference))));
+	return jdtounix(jewishtojd(3, 25, $year));
+}
+
 ?>
