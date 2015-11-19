@@ -15,10 +15,7 @@ $template = e107::getTemplate('dateplus');
 
 $curMonth = date('n');
 $curDay = date('j');
-
-$monthName = cal_info(0);
 $holidays = simplexml_load_file(e_PLUGIN.'dateplus/holidays.xml');
-
 $text = "";
 
 foreach($holidays->month as $month)
@@ -52,14 +49,18 @@ foreach($holiray as $entry)
 	$all_holidays .= $tp->parseTemplate($template['holiday'], false, $sc);
 }
 
-$sc->setVars(array(
-	'all_holidays' => $all_holidays,
-));
+if(!empty($all_holidays)
+{
+	$sc->setVars(array(
+		'all_holidays' => $all_holidays,
+	));
 
-$text = $tp->parseTemplate($template['menu'], false, $sc);
-
-if(!$text)
+	$text = $tp->parseTemplate($template['menu'], false, $sc);
+}
+else
+{
 	$text = 'No holidays today!';
+}
 
-e107::getRender()->tablerender('title', $text);
+e107::getRender()->tablerender('Date+', $text);
 ?>
