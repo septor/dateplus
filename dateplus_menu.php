@@ -17,40 +17,20 @@ $curMonth = date('n');
 $curDay = date('j');
 $hs = hanukkahStart();
 $he = hanukkahStart() + 691200;
-$holidays = simplexml_load_file(e_PLUGIN.'dateplus/holidays.xml');
 $text = "";
 
-foreach($holidays->month as $month)
+$holidays = getHolidays($curMonth, $curDay);
+foreach($holidays as $holiday)
 {
-	if($month['id'] == $curMonth)
-	{
-		foreach($month->holiday as $holiday)
-		{
-			$day = (is_numeric((string)$holiday['day']) ? $holiday['day'] : date('j', strtotime($holiday['day'].' of this month')));
-			if($day == $curDay)
-			{
-				$holiray[] = array($holiday['name'], $month['id'], $day);
-			}
-			if($month['id'].'/'.$curDay == date('n/j', easter_date()))
-			{
-				$holiray[] = array('Easter', $month['id'], $curDay);
-			}
-		}
-	}
+	$holiray[] = array($holiday[0], $holiday[1], $holiday[2]);
 }
 
 if($pref['enableUserdays'] == true)
 {
-	$userdays = e107::getDb()->retrieve('userdays', '*', '', true);
-	foreach($userdays as $row)
+	$userdays = getUserdays($curMonth, $curDay);
+	foreach($userdays as $userday)
 	{
-		$udMonth = date('n', $row['event_date']);
-		$udDay = date('j', $row['event_date']);
-
-		if($udMonth.'/'.$udDay == $curMonth.'/'.$curDay)
-		{
-			$holiray[] = array($row['event_name'], $udMonth, $udDay);
-		}
+		$holiray[] = array($userday[0], $userday[1], $userday[2]);
 	}
 }
 
