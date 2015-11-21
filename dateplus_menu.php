@@ -44,15 +44,18 @@ if(date('j/n/Y', $he) == date('j/n/Y'))
 }
 
 $all_holidays = '';
-foreach($holiray as $entry)
+if(isset($holiray[0]))
 {
-	$sc->setVars(array(
-		'name' => $entry[0],
-		'month' => $entry[1],
-		'day' => $entry[2],
-	));
+	foreach($holiray as $entry)
+	{
+		$sc->setVars(array(
+			'name' => $entry[0],
+			'month' => $entry[1],
+			'day' => $entry[2],
+		));
 
-	$all_holidays .= $tp->parseTemplate($template['holiday'], false, $sc);
+		$all_holidays .= $tp->parseTemplate($template['holiday'], false, $sc);
+	}
 }
 
 $sc->setVars(array(
