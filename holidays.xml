@@ -40,6 +40,7 @@
 		<holiday name="Cinco de Mayo (Mexico)" day="5" />
 		<holiday name="Children's Day" day="5" />
 		<holiday name="Independence Day (Paraguay)" day="14" />
+		<holiday name="Norwegian Constitution Day" day="17" />
 		<holiday name="Mother's Day" day="second Sunday" />
 		<holiday name="Memorial Day" afterDay="24" weekday="2" />
 	</month>
