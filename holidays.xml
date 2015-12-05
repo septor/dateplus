@@ -15,7 +15,7 @@
 		<holiday name="Lincoln's Birthday" day="12" />
 		<holiday name="St. Valentine's Day" day="14" />
 		<holiday name="Galileo Galilei born (1564)" day="15" />
-		<holiday name="Washington's Birthday" day="22" />
+		<holiday name="Washington's Birthday" day="third Monday" />
 		<holiday name="Leap Day" day="29" />
 	</month>
 	<month id="3">
