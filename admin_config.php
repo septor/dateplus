@@ -28,7 +28,6 @@ class dateplus_adminArea extends e_admin_dispatcher
 		'main/list'			=> array('caption' => 'Manage Userdays', 'perm' => 'P'),
 		'main/create'		=> array('caption' => 'Create Userdays', 'perm' => 'P'),
 		'main/prefs' 		=> array('caption' => LAN_PREFS, 'perm' => 'P'),
-		// 'main/custom'		=> array('caption'=> 'Custom Page', 'perm' => 'P')
 	);
 
 	protected $adminMenuAliases = array(
@@ -40,135 +39,111 @@ class dateplus_adminArea extends e_admin_dispatcher
 
 class dateplus_ui extends e_admin_ui
 {
-		protected $pluginTitle		= 'Date+';
-		protected $pluginName		= 'dateplus';
-	//	protected $eventName		= 'dateplus-'; // remove comment to enable event triggers in admin.
-		protected $table			= 'userdays';
-		protected $pid				= 'id';
-		protected $perPage			= 20;
-		protected $batchDelete		= true;
-	//	protected $batchCopy		= true;
-	//	protected $sortField		= 'somefield_order';
-	//	protected $orderStep		= 10;
-	//	protected $tabs				= array('Tabl 1','Tab 2'); // Use 'tab'=>0  OR 'tab'=>1 in the $fields below to enable.
+	protected $pluginTitle		= 'Date+';
+	protected $pluginName		= 'dateplus';
+	protected $table			= 'userdays';
+	protected $pid				= 'id';
+	protected $perPage			= 20;
+	protected $batchDelete		= true;
+	protected $listOrder		= 'id DESC';
 
-	//	protected $listQry      	= "SELECT * FROM `#tableName` WHERE field != '' "; // Example Custom Query. LEFT JOINS allowed. Should be without any Order or Limit.
+	protected $fields = array(
+		'checkboxes' =>   array (
+			'title' => '',
+			'type' => null,
+			'data' => null,
+			'width' => '5%',
+			'thclass' => 'center',
+			'forced' => '1',
+			'class' => 'center',
+			'toggle' => 'e-multiselect',
+		),
+		'id' =>   array (
+			'title' => LAN_ID,
+			'data' => 'int',
+			'width' => '5%',
+			'help' => '',
+			'readParms' => '',
+			'writeParms' => '',
+			'class' => 'left',
+			'thclass' => 'left',
+		),
+		'event_name' => array(
+			'title' => 'Event Name',
+			'type' => 'text',
+			'data' => 'str',
+			'width' => 'auto',
+			'inline' => true,
+			'help' => 'The name of the event.',
+			'readParms' => '',
+			'writeParms' => '',
+			'class' => 'left',
+			'thclass' => 'left',
+		),
+		'event_date' => array(
+			'title' => 'Event Date',
+			'type' => 'datestamp',
+			'data' => 'str',
+			'width' => 'auto',
+			'inline' => true,
+			'help' => '',
+			'readParms' => '',
+			'writeParms' => '',
+			'class' => 'left',
+			'thclass' => 'left',
+		),
+		'options' =>   array (
+			'title' => LAN_OPTIONS,
+			'type' => null,
+			'data' => null,
+			'width' => '10%',
+			'thclass' => 'center last',
+			'class' => 'center last',
+			'forced' => '1',
+		),
+	);
 
-		protected $listOrder		= 'id DESC';
-		protected $fields = array(
-			'checkboxes' =>   array (
-				'title' => '',
-				'type' => null,
-				'data' => null,
-				'width' => '5%',
-				'thclass' => 'center',
-				'forced' => '1',
-				'class' => 'center',
-				'toggle' => 'e-multiselect',
-			),
-			'id' =>   array (
-				'title' => LAN_ID,
-				'data' => 'int',
-				'width' => '5%',
-				'help' => '',
-				'readParms' => '',
-				'writeParms' => '',
-				'class' => 'left',
-				'thclass' => 'left',
-			),
-			'event_name' => array(
-				'title' => 'Event Name',
-				'type' => 'text',
-				'data' => 'str',
-				'width' => 'auto',
-				'inline' => true,
-				'help' => 'The name of the event.',
-				'readParms' => '',
-				'writeParms' => '',
-				'class' => 'left',
-				'thclass' => 'left',
-			),
-			'event_date' => array(
-				'title' => 'Event Date',
-				'type' => 'datestamp',
-				'data' => 'str',
-				'width' => 'auto',
-				'inline' => true,
-				'help' => '',
-				'readParms' => '',
-				'writeParms' => '',
-				'class' => 'left',
-				'thclass' => 'left',
-			),
-			'options' =>   array (
-				'title' => LAN_OPTIONS,
-				'type' => null,
-				'data' => null,
-				'width' => '10%',
-				'thclass' => 'center last',
-				'class' => 'center last',
-				'forced' => '1',
-			),
-		);
+	protected $fieldpref = array('event_name', 'event_date');
 
-		protected $fieldpref = array('event_name', 'event_date');
+	protected $prefs = array(
+		'enableUserdays' => array(
+			'title' => 'Enable Userdays?',
+			'tab' => 0,
+			'type' => 'boolean',
+			'data' => 'str',
+			'help' => 'Do you want your custom events added to the holidays output?'
+		),
+	);
 
-	//	protected $preftabs        = array('General', 'Other' );
-		protected $prefs = array(
-			'enableUserdays' => array(
-				'title' => 'Enable Userdays?',
-				'tab' => 0,
-				'type' => 'boolean',
-				'data' => 'str',
-				'help' => 'Do you want your custom events added to the holidays output?'
-			),
-		);
+	public function init()
+	{
+	}
 
-		public function init()
-		{
-			// Set drop-down values (if any).
-		}
+	public function beforeCreate($new_data)
+	{
+		return $new_data;
+	}
 
-		// ------- Customize Create --------
-		public function beforeCreate($new_data)
-		{
-			return $new_data;
-		}
+	public function afterCreate($new_data, $old_data, $id)
+	{
+	}
 
-		public function afterCreate($new_data, $old_data, $id)
-		{
-			// do something
-		}
+	public function onCreateError($new_data, $old_data)
+	{
+	}
 
-		public function onCreateError($new_data, $old_data)
-		{
-			// do something
-		}
+	public function beforeUpdate($new_data, $old_data, $id)
+	{
+		return $new_data;
+	}
 
-		// ------- Customize Update --------
-		public function beforeUpdate($new_data, $old_data, $id)
-		{
-			return $new_data;
-		}
+	public function afterUpdate($new_data, $old_data, $id)
+	{
+	}
 
-		public function afterUpdate($new_data, $old_data, $id)
-		{
-			// do something
-		}
-
-		public function onUpdateError($new_data, $old_data, $id)
-		{
-			// do something
-		}
-		/*
-		// optional - a custom page.
-		public function customPage()
-		{
-			$text = 'Hello World!';
-			return $text;
-
-		}
-		*/
+	public function onUpdateError($new_data, $old_data, $id)
+	{
+	}
 }
 
 class dateplus_form_ui extends e_admin_form_ui
