@@ -19,3 +19,5 @@ Userdays are events, birthdays, trips, etc that maybe only you (or your users) c
 ## Translations
 
 Multilingual support is coming soon. Stick around.
+
+Join the chat at https://gitter.im/septor/dateplus
